@@ -4,7 +4,7 @@ import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./screen2.css";
+import "./screen2.sass";
 import us from "../../assets/images/us.png";
 import ca from "../../assets/images/ca.png";
 import help from "../../assets/images/help.png";

@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./screen1.css";
+import "./screen1.sass";
 import logo from "../../assets/images/logo.png";
 import cart from "../../assets/images/cart.png";
 import box1 from "../../assets/images/box1.png";
