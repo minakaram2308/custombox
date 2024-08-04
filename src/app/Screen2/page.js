@@ -2,25 +2,18 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./screen2.css";
-import logo from "../../assets/images/logo.png";
-import cart from "../../assets/images/cart.png";
-import box1 from "../../assets/images/box1.png";
-import box2 from "../../assets/images/box2.png";
 import us from "../../assets/images/us.png";
 import ca from "../../assets/images/ca.png";
 import help from "../../assets/images/help.png";
-import { HiArrowSmLeft } from "react-icons/hi";
-import { HiArrowSmRight } from "react-icons/hi";
-import { FiMenu } from "react-icons/fi";
+import pin from "../../assets/images/pin.png";
 
-import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 export default function Screen2() {
   const submitForm = (values) => {
@@ -68,6 +61,26 @@ export default function Screen2() {
       .min(4, "Password too short")
       .matches(/[A-Z]/, "Password must contain at least one uppercase letter"),
   });
+
+  const libraries = ["places"];
+  const mapContainerStyle = {
+    height: "500px",
+    width: "100%",
+    borderRadius: "0 12px 12px 0"
+  };
+  const center = {
+    lat: 51.505,
+    lng: -0.09,
+  };
+
+  const customIcon = "https://pin-test.netlify.app/pin.png";
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: "AIzaSyCuTilAfnGfkZtIx0T3qf-eOmWZ_N2LpoY",
+    libraries,
+  });
+
+  if (loadError) return <div>Error loading maps</div>;
+  if (!isLoaded) return <div>Loading...</div>;
 
   return (
     <main>
@@ -135,8 +148,8 @@ export default function Screen2() {
           <div className="contactForm">
             <div className="container">
               <div className="row">
-                <div className="col-md-6">
-                  <h3>Send Us a Message</h3>
+                <div className="col-md-6 sendMessage">
+                  <h3 className="text-center mb-4">Send Us a Message</h3>
                   <Formik
                     initialValues={initialValues}
                     validate={validate}
@@ -258,8 +271,18 @@ export default function Screen2() {
                     }}
                   </Formik>
                 </div>
+                <div className="col-md-6 p-0">
+                <GoogleMap
+                  mapContainerStyle={mapContainerStyle}
+                  center={center}
+                  zoom={13}
+
+                >
+                  <Marker position={center} icon={customIcon} size={5} />
+                </GoogleMap>
               </div>
-              <div className="col-md-6"></div>
+              </div>
+   
             </div>
           </div>
         </div>

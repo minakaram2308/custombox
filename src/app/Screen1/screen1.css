@@ -104,6 +104,9 @@ main {
     height: 100vh;
     padding-bottom: 112px;
   }
+  main {
+    background-image: url("../../assets/images/mob.png");
+  }
   .h100 {
     height: auto;
   }
