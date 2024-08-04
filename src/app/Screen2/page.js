@@ -17,27 +17,29 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 export default function Screen2() {
   const submitForm = (values) => {
+    console.log('first',values)
     axios
       .post(
-        "https://friendly-blackwell.208-109-229-253.plesk.page/api/Auth/Login",
+        "api_link",
         values
       )
       .then((response) => {
-        console.log("Response:", response.data);
+        console.log("Response:", response);
         if (response.status === 200) {
         } else {
-          console.log("Error without crash :", response.data);
+          console.log("Error without crash :", response);
         }
       })
       .catch((error) => {
-        console.log("Error11:", error.response.data);
+        console.log("Error11:", error);
       })
       .finally(() => {});
   };
   const initialValues = {
-    email: "",
-    password: "",
-    rememberMe: false,
+    Name: "",
+    Email: "",
+    Phone: "",
+    Message: "",
   };
 
   const validate = async (values) => {
@@ -54,19 +56,17 @@ export default function Screen2() {
   };
 
   const validationSchema = yup.object().shape({
-    email: yup.string().required("Email is required").email("Invalid Email"),
-    password: yup
-      .string()
-      .required("Password is required")
-      .min(4, "Password too short")
-      .matches(/[A-Z]/, "Password must contain at least one uppercase letter"),
+    Email: yup.string().required("Email is required").email("Invalid Email"),
+    Name: yup.string().required("Name is required"),
+    Phone: yup.string().required("Phone is required"),
+    Message: yup.string().required("Message is required"),
   });
 
   const libraries = ["places"];
   const mapContainerStyle = {
     height: "500px",
     width: "100%",
-    borderRadius: "0 12px 12px 0"
+    borderRadius: "0 12px 12px 0",
   };
   const center = {
     lat: 51.505,
@@ -175,39 +175,39 @@ export default function Screen2() {
                                 <div className="form-group">
                                   <input
                                     type="text"
-                                    name="email"
+                                    name="Name"
                                     placeholder="Full Name"
-                                    value={values.email}
+                                    value={values.Name}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     className={`form-control ${
-                                      errors.email &&
-                                      touched.email &&
+                                      errors.Name &&
+                                      touched.Name &&
                                       "input-error"
                                     }`}
                                   />
-                                  {errors.email && touched.email && (
-                                    <p className="error">{errors.email}</p>
+                                  {errors.Name && touched.Name && (
+                                    <p className="error">{errors.Name}</p>
                                   )}
                                 </div>
                               </div>
                               <div className="col-md-6">
                                 <div className="form-group">
                                   <input
-                                    type="email"
-                                    name="email"
+                                    type="Email"
+                                    name="Email"
                                     placeholder="Email"
-                                    value={values.email}
+                                    value={values.Email}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     className={`form-control ${
-                                      errors.email &&
-                                      touched.email &&
+                                      errors.Email &&
+                                      touched.Email &&
                                       "input-error"
                                     }`}
                                   />
-                                  {errors.email && touched.email && (
-                                    <p className="error">{errors.email}</p>
+                                  {errors.Email && touched.Email && (
+                                    <p className="error">{errors.Email}</p>
                                   )}
                                 </div>
                               </div>
@@ -215,19 +215,19 @@ export default function Screen2() {
                                 <div className="form-group">
                                   <input
                                     type="text"
-                                    name="email"
+                                    name="Phone"
                                     placeholder="Phone Number"
-                                    value={values.email}
+                                    value={values.Phone}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     className={`form-control ${
-                                      errors.email &&
-                                      touched.email &&
+                                      errors.Phone &&
+                                      touched.Phone &&
                                       "input-error"
                                     }`}
                                   />
-                                  {errors.email && touched.email && (
-                                    <p className="error">{errors.email}</p>
+                                  {errors.Phone && touched.Phone && (
+                                    <p className="error">{errors.Phone}</p>
                                   )}
                                 </div>
                               </div>
@@ -235,20 +235,20 @@ export default function Screen2() {
                                 <div className="form-group">
                                   <textarea
                                     type="text"
-                                    name="email"
+                                    name="Message"
                                     rows={5}
                                     placeholder="Your Message"
-                                    value={values.email}
+                                    value={values.Message}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     className={`form-control ${
-                                      errors.email &&
-                                      touched.email &&
+                                      errors.Message &&
+                                      touched.Message &&
                                       "input-error"
                                     }`}
                                   />
-                                  {errors.email && touched.email && (
-                                    <p className="error">{errors.email}</p>
+                                  {errors.Message && touched.Message && (
+                                    <p className="error">{errors.Message}</p>
                                   )}
                                 </div>
                               </div>
@@ -272,17 +272,15 @@ export default function Screen2() {
                   </Formik>
                 </div>
                 <div className="col-md-6 p-0">
-                <GoogleMap
-                  mapContainerStyle={mapContainerStyle}
-                  center={center}
-                  zoom={13}
-
-                >
-                  <Marker position={center} icon={customIcon} size={5} />
-                </GoogleMap>
+                  <GoogleMap
+                    mapContainerStyle={mapContainerStyle}
+                    center={center}
+                    zoom={13}
+                  >
+                    <Marker position={center} icon={customIcon} size={5} />
+                  </GoogleMap>
+                </div>
               </div>
-              </div>
-   
             </div>
           </div>
         </div>
