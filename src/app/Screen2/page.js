@@ -1,14 +1,13 @@
 "use client";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import "bootstrap/dist/css/bootstrap.min.css";
+  // import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./screen2.sass";
 import us from "../../assets/images/us.png";
 import ca from "../../assets/images/ca.png";
 import help from "../../assets/images/help.png";
-import pin from "../../assets/images/pin.png";
 
 import axios from "axios";
 import { Formik } from "formik";
@@ -92,7 +91,7 @@ export default function Screen2() {
               src={help}
               alt="image"
               width={300}
-              className="img-fluid my-auto"
+              className="img-fluid bredcrumbImg"
             />
             <div className="CommunicationHub">
               <h2 className="mb-4">Communication Hub</h2>
@@ -133,22 +132,22 @@ export default function Screen2() {
       </div>
       <div className="help">
         <div className="container">
-          <div className="row">
-            <div className="col-md-5 mb-4">
+          <div className="d-flex">
+            <div className="w-50 mb-4">
               <h3>
                 We’re Here to <span className="helpSpan">Help</span>
               </h3>
-              <p>
+              <p className="mb-3">
                 Have a question or a unique, large-scale project? For orders
                 over 2,000, we'll assign a dedicated client services rep to
                 ensure your custom box design is executed flawlessly.
               </p>
-            </div>{" "}
+            </div>
           </div>
           <div className="contactForm">
             <div className="container">
-              <div className="row">
-                <div className="col-md-6 sendMessage">
+              <div className="d-flex">
+                <div className="w-50 sendMessage">
                   <h3 className="text-center mb-4">Send Us a Message</h3>
                   <Formik
                     initialValues={initialValues}
@@ -169,10 +168,8 @@ export default function Screen2() {
                       } = formik;
                       return (
                         <form onSubmit={handleSubmit}>
-                          <div className="container-fluid">
-                            <div className="row">
-                              <div className="col-md-6">
-                                <div className="form-group">
+                            <div className="d-flex flex-wrap">
+                              <div className="w-100 d-flex" style={{gap:"1rem"}}>
                                   <input
                                     type="text"
                                     name="Name"
@@ -180,7 +177,7 @@ export default function Screen2() {
                                     value={values.Name}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className={`form-control ${
+                                    className={`form-control w-50 mb-3 ${
                                       errors.Name &&
                                       touched.Name &&
                                       "input-error"
@@ -189,10 +186,6 @@ export default function Screen2() {
                                   {errors.Name && touched.Name && (
                                     <p className="error">{errors.Name}</p>
                                   )}
-                                </div>
-                              </div>
-                              <div className="col-md-6">
-                                <div className="form-group">
                                   <input
                                     type="Email"
                                     name="Email"
@@ -200,7 +193,7 @@ export default function Screen2() {
                                     value={values.Email}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className={`form-control ${
+                                    className={`form-control w-50 mb-3 ${
                                       errors.Email &&
                                       touched.Email &&
                                       "input-error"
@@ -209,10 +202,8 @@ export default function Screen2() {
                                   {errors.Email && touched.Email && (
                                     <p className="error">{errors.Email}</p>
                                   )}
-                                </div>
                               </div>
-                              <div className="col-md-12">
-                                <div className="form-group">
+
                                   <input
                                     type="text"
                                     name="Phone"
@@ -220,7 +211,7 @@ export default function Screen2() {
                                     value={values.Phone}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className={`form-control ${
+                                    className={`form-control w-100 mb-3 ${
                                       errors.Phone &&
                                       touched.Phone &&
                                       "input-error"
@@ -229,10 +220,6 @@ export default function Screen2() {
                                   {errors.Phone && touched.Phone && (
                                     <p className="error">{errors.Phone}</p>
                                   )}
-                                </div>
-                              </div>
-                              <div className="col-md-12">
-                                <div className="form-group">
                                   <textarea
                                     type="text"
                                     name="Message"
@@ -241,7 +228,7 @@ export default function Screen2() {
                                     value={values.Message}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className={`form-control ${
+                                    className={`form-control w-100 mb-3 ${
                                       errors.Message &&
                                       touched.Message &&
                                       "input-error"
@@ -250,10 +237,7 @@ export default function Screen2() {
                                   {errors.Message && touched.Message && (
                                     <p className="error">{errors.Message}</p>
                                   )}
-                                </div>
-                              </div>
                             </div>
-                          </div>
                           <div className="btn_block">
                             <button
                               type="submit"
@@ -271,7 +255,7 @@ export default function Screen2() {
                     }}
                   </Formik>
                 </div>
-                <div className="col-md-6 p-0">
+                <div className="w-50 p-0">
                   <GoogleMap
                     mapContainerStyle={mapContainerStyle}
                     center={center}
